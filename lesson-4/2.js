@@ -13,6 +13,10 @@ const person = {};
 // Решение
 
 person.rate = 30;
+Object.defineProperty(person, "rate", { value: 30, writable: true, configurable: false, enumerable: false });
+// Предположим что сегодня 10 января, в этом случае это свойство возвращает число 300
+Object.defineProperty(person, "salary", { value: person.rate * new Date().getDate(), writable: false, configurable: false });
+person.salary;
 
 // Предположим что сегодня 10 января, в этом случае это свойство возвращает число 300
 person.salary;

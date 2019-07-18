@@ -15,11 +15,22 @@
 const array = [1, 2, -4, 3, -9, -1, 7];
 
 // Решение
-
+const isPositive = function (arr) {
+  let newArr = [];
+  for (let i of arr) {
+    if (typeof i !== "number") {
+      throw "Входной параметр должен обладать типом number";
+    }
+    if (i > 0) {
+      newArr.push(i);
+    }
+  }
+  return newArr;
+}
 /* не удалять */
-isPositive(-3); // false
-isPositive(3); // true
-isPositive('s'); // Error: parameter type is not a Number
+console.log(isPositive([1, 2, -4, 3, -9, -1, 7])); // false
+//console.log(isPositive(3)); // true
+console.log(isPositive([1, 2, -4, 3, -9, "s", 7])); // Error: parameter type is not a Number
 
 exports.isPositive = isPositive;
 /* не удалять */

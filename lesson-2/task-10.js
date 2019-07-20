@@ -12,8 +12,9 @@ let done = false;
         var tmp = arr[i - 1];
         arr[i - 1] = arr[i];
         arr[i] = tmp;
-      } 
+      }
     }
 }
 
 console.log(arr);
+//Задача 10: Выполнена верно. Замечание из задачи #9.

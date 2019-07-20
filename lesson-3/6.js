@@ -12,21 +12,39 @@
  */
 
 // Решение
-var isEven = function(n) {
-    if (typeof n === "number"){
-      if(n % 2 == 0){
-         return true;
-         } else {
-        return false;
-           }
-    } else {
-      throw "parameter type is not a Number";
-    }
-  };
+// var isEven = function(n) {
+//     if (typeof n === "number"){
+//       if(n % 2 == 0){
+//          return true;
+//          } else {
+//         return false;
+//            }
+//     } else {
+//       throw "parameter type is not a Number";
+//     }
+//   };
 /* не удалять */
-isEven(3); // false
-isEven(4); // true
-isEven('Content'); // Error: parameter type is not a Number
+
+/**
+ * - Задача 6: Выполнено верно. Ольга, блок if..else нужно оптимизировать. Достаточно его заменить на → return n % 2 === 0;
+ *
+ */
+var isEven = function (n) {
+  if (typeof n !== "number") {
+    throw "parameter type is not a Number";
+  }
+  if (n % 2 === 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+
+
+console.log(isEven(3)); // false
+console.log(isEven(4)); // true
+console.log(isEven('Content')); // Error: parameter type is not a Number
 
 exports.isEven = isEven;
 /* не удалять */

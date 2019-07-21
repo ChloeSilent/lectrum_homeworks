@@ -24,12 +24,12 @@ const shallowMerge = function (obj1, obj2) {
 
 
     Object.getOwnPropertyNames(obj1).forEach(function (prop) {
-        var descriptor = Object.getOwnPropertyDescriptor(obj1, prop);
+        const descriptor = Object.getOwnPropertyDescriptor(obj1, prop);
         Object.defineProperty(mergedObj, prop, descriptor);
     });
 
     Object.getOwnPropertyNames(obj2).forEach(function (prop) {
-        var descriptor = Object.getOwnPropertyDescriptor(obj2, prop);
+        const descriptor = Object.getOwnPropertyDescriptor(obj2, prop);
         Object.defineProperty(mergedObj, prop, descriptor);
     });
     return mergedObj;

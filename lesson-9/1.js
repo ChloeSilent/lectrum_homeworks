@@ -21,16 +21,12 @@ const shallowMerge = function (obj1, obj2) {
         throw new TypeError("Парметры функции должны быть объектами");
     }
     const mergedObj = {};
-
-    for (let i = 0; i < arguments.length; i++) {
-        let obj = arguments[i];
-
-        Object.getOwnPropertyNames(obj).forEach(function (prop) {
-            const descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+    [].forEach.call(arguments, (element) => {
+        Object.getOwnPropertyNames(element).forEach(function (prop) {
+            const descriptor = Object.getOwnPropertyDescriptor(element, prop);
             Object.defineProperty(mergedObj, prop, descriptor);
         });
-
-    };
+    });
 
     return mergedObj;
 }

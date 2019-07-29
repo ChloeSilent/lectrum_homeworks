@@ -27,6 +27,32 @@
  */
 
 // Решение
+const createLogger = function () {
+    let calledArr = [];
+
+
+    let createdObj = {
+        call: function (firstFun, ...rest) {
+            if (typeof firstFun !== 'function') {
+                throw new Error('В качестве первого аргумента методу call была передана не функция')
+            }
+            let res = firstFun(...rest);
+            let called = {
+                name: firstFun.name,
+                in: rest ? rest : [],
+                out: res ? res : undefined
+            };
+
+            calledArr.push(called);
+            return res;
+        },
+        print: function () {
+            return calledArr;
+        }
+    }
+
+    return createdObj;
+}
 
 const returnIdentity = n => n;
 const sum = (a, b) => a + b;

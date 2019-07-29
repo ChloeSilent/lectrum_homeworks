@@ -12,19 +12,29 @@
 // Решение
 
 const createFibonacciGenerator = function () {
-    let a = 0;
-    let b = 1;
-    let c;
-    const innerFibonacci = function () {
-        c = a + b;
-        a = b;
-        b = c;
+    let n = 2;
+    let result
 
-        return c;
+
+    const innerFibonacci = function () {
+        let f = [0, 1];
+
+        if (n <= 2) {
+             result = 1; //записываем в результат срез f от 0 до n
+        } else {
+
+            for (i = 0; i < n - 2; i++) { // повторяем n-2 раза, т.к. 2 элемента уже есть
+                f.push(f[f.length - 1] + f[f.length - 2]); //заполняем (n+2)-й элемент
+            }
+
+             result = f[f.length - 1]; //записываем в result наш массив f
+
+        }
+        n++
+        return (result); //вывод result на экран (через алерт)
     }
 
     return innerFibonacci;
-
 }
 
 const generateFibonacciNumber = createFibonacciGenerator();

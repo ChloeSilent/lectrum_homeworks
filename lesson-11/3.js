@@ -20,18 +20,15 @@ const createFibonacciGenerator = function () {
     let fibonacciObject = {
         print: function () {
 
-            let f = [0, 1];
+            let fibArr = [0, 1];
 
             if (n <= 2) {
-                result = 1; //записываем в результат срез f от 0 до n
+                result = 1; 
             } else {
-
-                for (i = 0; i < n - 2; i++) { // повторяем n-2 раза, т.к. 2 элемента уже есть
-                    f.push(f[f.length - 1] + f[f.length - 2]); //заполняем (n+2)-й элемент
+                for (i = 0; i < n - 2; i++) { 
+                    fibArr.push(fibArr[fibArr.length - 1] + fibArr[fibArr.length - 2]); 
                 }
-
-                result = f[f.length - 1]; //записываем в result наш массив f
-
+                result = fibArr[fibArr.length - 1]; //записываем в result наш массив f
             }
             n++
             return (result); //вывод result на экран (через алерт)

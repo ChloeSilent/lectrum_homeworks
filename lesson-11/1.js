@@ -19,7 +19,7 @@
 const createNumberGenerator = function () {
     let generatedNumbersArray = [];
 
-    const a = function () {
+    const createNumber = function () {
         let randNum = Math.floor(Math.random() * 99) + 1;
 
         if (generatedNumbersArray.includes(randNum)) {
@@ -29,7 +29,7 @@ const createNumberGenerator = function () {
         return generatedNumbersArray.unshift(randNum);
     }
 
-    return a;
+    return createNumber;
 }
 
 

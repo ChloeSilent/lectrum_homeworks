@@ -26,16 +26,17 @@
  * - Выполнено верно. Старайтесь оптимизировать условия. Проверить если аргумент не цифра, то выбросить ошибку. И уже за пределами условия if уже выполнить вычисления. + замечание из задачи #2.
  * - обновленное решение
  */
-var f = function (...args) {
- if(args.length !=3) {
-  throw newError ("Функция должна принимать три параметра");
- }
+const f = function (...args) {
+  if (args.length != 3) {
+    throw new Error("Функция должна принимать три параметра");
+  }
 
-  for (let i of args.keys()) {
+  for (const i of args.keys()) {
     if (typeof i !== 'number') {
-      throw "all parameters should be a Number type";
+      throw new Error("all parameters should be a Number type");
     }
   }
+
   return (args[0] - args[1]) / args[2];
 }
 

@@ -27,24 +27,23 @@
 
 /**
  * - Задача 6: Выполнено верно. Ольга, блок if..else нужно оптимизировать. Достаточно его заменить на → return n % 2 === 0;
- *
+ * - новое решение
  */
-var isEven = function (n) {
+
+
+const isEven = function (n) {
   if (typeof n !== "number") {
-    throw "parameter type is not a Number";
+    throw new Error("parameter type is not a Number");
   }
-  if (n % 2 === 0) {
-    return true;
-  } else {
-    return false;
-  }
+
+  return (n % 2 === 0);
 };
 
 
 
 console.log(isEven(3)); // false
 console.log(isEven(4)); // true
-console.log(isEven('Content')); // Error: parameter type is not a Number
+//console.log(isEven('Content')); // Error: parameter type is not a Number
 
 exports.isEven = isEven;
 /* не удалять */

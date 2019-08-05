@@ -40,6 +40,9 @@ const collect = function (arr) {
     }
 };
 
+/**
+ * - Задача 2: Выполнено верно. Так держать!
+ */
 const array1 = [[[1, 2], [1, 2]], [[2, 1], [1, 2]]];
 console.log(collect(array1)); // 12
 

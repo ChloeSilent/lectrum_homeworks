@@ -18,28 +18,63 @@
  */
 
 // Решение
+// const calculate = function (...funcs) {
+
+//     function isFunc(elem) {
+//         if (elem !== 'function') {
+//             throw new Error("Один из аргументов функции calculate() не является функцией");
+//         };
+//     }
+
+//     funcs.every(isFunc);
+
+//     let j = funcs[0]();
+//     for (let i = 1; i < funcs.length; i++) {
+//         let currentFunct = funcs[i](j);
+//         j = currentFunct;
+//         if(j === false) {
+//             throw new Error("Одна функция из аргументов не вернула значение.");
+//         }
+//     }
+
+//     return j;
+// };
+
+/**
+ * Задача 2: Выполнена не верно. 
+ * Организация проверки на то являются ли все аргументы функциями выполнена с ошибкой. 
+ * Функция every ОБЯЗАТЕЛЬНО должна возвращать булево значение, 
+ * у вас после первой проверки возвращается undefined,
+ *  метод every трактует его как false и в итоге у вас валидация падает на 2-м шаге. 
+ * так же не верно использовать every так как этот метод используется для того что бы вернуть значение проверки, 
+ * в вашем случае нужно было использовать forEach.
+ */
+
+// РЕШЕНИЕ 2
+
 const calculate = function (...funcs) {
 
-    function isFunc(elem) {
-        if (elem !== 'function') {
+    funcs.forEach((f) => {
+        if (f && {}.toString.call(f) !== '[object Function]') {
             throw new Error("Один из аргументов функции calculate() не является функцией");
         };
-    }
 
-    funcs.every(isFunc);
+    })
+
 
     let j = funcs[0]();
+
     for (let i = 1; i < funcs.length; i++) {
         let currentFunct = funcs[i](j);
         j = currentFunct;
-        if(j === false) {
+
+        if (j === false) {
             throw new Error("Одна функция из аргументов не вернула значение.");
         }
     }
 
     return j;
 };
-
 
 const result = calculate(
     () => {

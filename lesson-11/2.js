@@ -11,9 +11,40 @@
 
 // Решение
 
+// const createFibonacciGenerator = function () {
+//     let n = 2;
+//     let result
+
+
+//     const innerFibonacci = function () {
+//         let fibArr = [0, 1];
+
+//         if (n <= 2) {
+//             result = 1;
+//         } else {
+//             for (i = 0; i < n - 2; i++) {
+//                 fibArr.push(fibArr[fibArr.length - 1] + fibArr[fibArr.length - 2]);
+//             }
+//             result = fibArr[fibArr.length - 1];
+//         }
+//         n++
+//         return (result);
+//     }
+
+//     return innerFibonacci;
+// }
+
+/**
+ * Задача 2:  Выполнена верно. 
+ * Следуя хорошей практике нужно инизиализировать переменные сразу при их объявлении. 
+ * Так же по хорошей практике нужно ставить пустую строку перед return.
+ */
+
+ // Решение
+
 const createFibonacciGenerator = function () {
     let n = 2;
-    let result
+    let result = null;
 
 
     const innerFibonacci = function () {
@@ -27,13 +58,13 @@ const createFibonacciGenerator = function () {
             }
             result = fibArr[fibArr.length - 1];
         }
-        n++
+        n++;
+
         return (result);
     }
 
     return innerFibonacci;
 }
-
 const generateFibonacciNumber = createFibonacciGenerator();
 
 console.log(generateFibonacciNumber()); // 1

@@ -28,6 +28,7 @@ class User {
     }
 
     getName() {
+
         return (`${this.firstName} ${this.lastName}`)
     }
 }
@@ -40,6 +41,7 @@ class Student extends User {
     }
 
     getCourse() {
+
         return new Date().getFullYear() - this.year;
     }
 }

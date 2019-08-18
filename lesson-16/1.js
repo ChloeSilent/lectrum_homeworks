@@ -16,6 +16,23 @@
  */
 
 // Решение
+class Worker {
+
+    constructor(firstName, lastName, rate, days) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.rate = rate;
+        this.days = days
+
+    }
+
+    getSalary () {
+
+        return this.rate * this.days;
+    }
+
+}
+
 
 const worker = new Worker('Walter', 'White', 10, 31);
 

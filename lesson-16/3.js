@@ -11,6 +11,52 @@
 
 // Решение
 
+class Worker {
+    #firstName;
+    #lastName;
+    #rate;
+    #days;
+
+    constructor(firstName, lastName, rate, days) {
+        this.#firstName = firstName;
+        this.#lastName = lastName;
+        this.#rate = rate;
+        this.#days = days
+
+    }
+
+    getName() {
+
+        return (`${this.#firstName} ${this.#lastName}`);
+    }
+
+    getRate() {
+
+        return this.#days;
+    }
+
+
+    set setRate(rate) {
+        this.#rate = rate;
+
+    }
+
+    getDays() {
+
+        return this.#days;
+    }
+
+    set setDays(days) {
+        this.#days = days;
+
+    }
+
+    getSalary() {
+
+        return this.#rate * this.#days;
+    }
+}
+
 const worker = new Worker('Walter', 'White', 10, 31);
 
 console.log(worker.getName()); // Walter White
@@ -18,8 +64,8 @@ console.log(worker.getRate()); // 10
 console.log(worker.getDays()); // 31
 console.log(worker.getSalary()); // 10 * 31 = 310
 
-worker.setRate(20);
-worker.setDays(10);
+worker.setRate = 20;
+worker.setDays = 10;
 console.log(worker.getSalary()); // 20 * 10 = 200
 
 exports.Worker = Worker;

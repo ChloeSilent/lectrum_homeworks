@@ -11,14 +11,32 @@
  */
 
 // Решение
+// const checkSpam = function (source, example) {
+//     if ((typeof source === 'string' && typeof example === 'string') || (source instanceof String && example instanceof String)) {
+//         return source.toLocaleLowerCase().includes(example.toLocaleLowerCase(), 0);
+//     }
+//         throw new TypeError('arguments type is not a string');
+// }
+
+/**
+ *
+ * -  Выполнено верно. instanceof ← в данном случае лишняя проверка. return выглядит плохо, слишком много операций в одной строке.
+ * - Лучше вынести в переменные, разбить на разные операции и вернуть результат.
+ * - Так код будет легче читать, а соответственно сопровождать.
+ * - решение
+ */
+
 const checkSpam = function (source, example) {
-    if ((typeof source === 'string' && typeof example === 'string') || (source instanceof String && example instanceof String)) {
-        return source.toLocaleLowerCase().includes(example.toLocaleLowerCase(), 0);
-    }
-        throw new TypeError('arguments type is not a string');
-}
+  if (typeof source === 'string' && typeof example === 'string') {
+    let sourceForCheck = source.toLocaleLowerCase();
+    let exampleForCheck = example.toLocaleLowerCase();
+    return sourceForCheck.includes(exampleForCheck, 0);
+  }
+  throw new TypeError('arguments type is not a string');
+};
 
-checkSpam('pitterXXX@gmail.com', 'xxx'); // true
-checkSpam('pitterxxx@gmail.com', 'XXX'); // true
 
-exports.checkSpam = checkSpam;
+console.log(checkSpam('pitterXXX@gmail.com', 'xxx')); // true
+console.log(checkSpam('pitterxxx@gmail.com', 'XXX')); // true
+
+//exports.checkSpam = checkSpam;

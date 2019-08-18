@@ -16,11 +16,42 @@
  */
 
 // Решение
+// const createNumberGenerator = function () {
+//     let generatedNumbersArray = [];
+
+
+//     const createNumber = function () {
+//         let randNum = Math.floor(Math.random() * 99) + 1;
+
+//         if (generatedNumbersArray.includes(randNum)) {
+//             throw new Error("Функция была вызвана, когда доступные для выведения числа закончились");
+//         }
+
+//         return generatedNumbersArray.unshift(randNum);
+//     }
+
+//     return createNumber;
+// }
+
+/**
+ *  Выполнена не верно. Рандомизатор не работает. 
+ * Возвращается номер итерации, а не рандомное число в нужном диапазоне. 
+ * randNum ← эта переменная не переприсваивается, 
+ * соответственно следуя хорошей практике, нужно было использовать const.
+ */
+
+// Решение 2
 const createNumberGenerator = function () {
     let generatedNumbersArray = [];
 
-    const a = function () {
-        let randNum = Math.floor(Math.random() * 99) + 1;
+    const generateRand = function () {
+        const min = 1;
+        const max = 101;
+        return Math.floor(Math.random() * (+max - +min) + +min);
+    }
+
+    const createNumber = function () {
+        const randNum = generateRand();
 
         if (generatedNumbersArray.includes(randNum)) {
             throw new Error("Функция была вызвана, когда доступные для выведения числа закончились");
@@ -29,7 +60,7 @@ const createNumberGenerator = function () {
         return generatedNumbersArray.unshift(randNum);
     }
 
-    return a;
+    return createNumber;
 }
 
 

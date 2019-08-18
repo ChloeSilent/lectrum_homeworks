@@ -34,16 +34,20 @@ const array = [
 // Решение
 const inspect = function (arr) {
     if (Array.isArray(arr) && arguments.length >= 1) {
-      return arr.filter(function (item) {
+        return arr.filter(function (item) {
             return typeof item === 'string';
-        }).map(function(name) {
-  return name.length;
-});
+        }).map(function (name) {
+            return name.length;
+        });
     } else {
         throw Error('При вызове функции не был передан один аргумент или в качестве первого аргумента был передан не массив')
     }
 };
 
+/**
+ * - Задача 1: Выполнено верно. Код очень плохо отформатирован. Форматирование кода = 50% успеха. Если код плохо отформатирован, его на прод не примут ;) Стоит уделить этому особое внимание.
+ * - отформатировала
+ */
 const result = inspect(array);
 console.log(result); // [ 7, 11, 7, 12 ]
 

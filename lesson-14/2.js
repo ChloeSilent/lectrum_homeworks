@@ -13,7 +13,11 @@
  * - при создании экземпляра CleanerRobot изначальный уровень энергии зада в не рамок допустимого диапазона.
  */
 
+<<<<<<< HEAD
 function CleanerRobot(initialEnergy = 0 /* Изначальный заряд батареи */) {
+=======
+function CleanerRobot(initialEnergy = 0 /* Изначальный заряд батареи */ ) {
+>>>>>>> 6c7a172034c6271d409fe76f68502217e7357a75
     this.getEnergy = getEnergy;
     this.setEnergy = setEnergy;
 
@@ -22,11 +26,33 @@ function CleanerRobot(initialEnergy = 0 /* Изначальный заряд б�
 
     this.setEnergy(initialEnergy);
 
+<<<<<<< HEAD
     function getEnergy() {
         // Решение
     }
     function setEnergy() {
         // Решение
+=======
+
+    function getEnergy() {
+        console.log(`energy is ${energy}`);
+        return energy;
+    }
+
+
+    function setEnergy(newEnergy) {
+
+        if (newEnergy < 0) {
+            throw new Error('New energy level can not be less than 0.');
+        }
+
+        if (newEnergy > MAX_ENERGY_CAPACITY) {
+            throw new Error(`New energy level can not be more than ${MAX_ENERGY_CAPACITY}.`);
+        }
+
+        energy = newEnergy;
+        return energy;
+>>>>>>> 6c7a172034c6271d409fe76f68502217e7357a75
     }
 }
 
@@ -61,4 +87,8 @@ try {
     console.log(`${error.name}: ${error.message}`);
 }
 
+<<<<<<< HEAD
 exports.CleanerRobot = CleanerRobot;
+=======
+exports.CleanerRobot = CleanerRobot;
+>>>>>>> 6c7a172034c6271d409fe76f68502217e7357a75

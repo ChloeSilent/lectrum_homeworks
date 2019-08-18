@@ -14,13 +14,30 @@
  */
 
 // Решение
+// const truncate = function(str, maxLngth){
+//     if ((typeof str === 'string' || str instanceof String) && (Number.isInteger(maxLngth))) {
+//         return (str.substring(0,maxLngth) + "...");
+//     }
+//     throw new TypeError('first argument type is not a string or second is not a number');
+// }
+/**
+ * - Выполнено верно. Валидации нужно оптимизировать.
+ * -  Они дублируют друг друга, в итоге выполняется лишняя операция.
+ * - решение
+ */
 const truncate = function(str, maxLngth){
-    if ((typeof str === 'string' || str instanceof String) && (Number.isInteger(maxLngth))) {
-        return (str.substring(0,maxLngth) + "...");
-    }
-    throw new TypeError('first argument type is not a string or second is not a number');
+  if (typeof str != 'string' ) {
+    throw new TypeError('the first argument type is not a string');
+  }
+  if (!(Number.isInteger(maxLngth))) {
+    throw new TypeError (' the second argument type is not a number');
+
+  }
+  return (str.substring(0,maxLngth) + "...");
 }
 
-truncate('Вот, что мне хотелось бы сказать на эту тему:', 21); // 'Вот, что мне хотел...'
 
-exports.truncate = truncate;
+
+console.log(truncate('Вот, что мне хотелось бы сказать на эту тему:', 21)); // 'Вот, что мне хотел...'
+
+//exports.truncate = truncate;

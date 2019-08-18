@@ -10,27 +10,31 @@
  * Условия:
  * - Входной параметр должен обладать типом number;
  * - Для добавление нового элемента в конец массива используйте метод push.
+ * - пустую строку перед return ещё добавить )
+ *  - И для переменной я бы выбрал название filteredArray. Так как это не просто новый массив, а отфильтрованный
  */
 
 const array = [1, 2, -4, 3, -9, -1, 7];
 
 // Решение
 const isPositive = function (arr) {
-  let newArr = [];
-  for (let i of arr) {
+  const filteredArray = [];
+
+  for (const i of arr) {
     if (typeof i !== "number") {
-      throw "Входной параметр должен обладать типом number";
+      throw new Error ("Входной параметр должен обладать типом number");
     }
     if (i > 0) {
-      newArr.push(i);
+      filteredArray.push(i);
     }
   }
-  return newArr;
+
+  return filteredArray;
 }
 /* не удалять */
 console.log(isPositive([1, 2, -4, 3, -9, -1, 7])); // false
 //console.log(isPositive(3)); // true
 console.log(isPositive([1, 2, -4, 3, -9, "s", 7])); // Error: parameter type is not a Number
 
-exports.isPositive = isPositive;
+//exports.isPositive = isPositive;
 /* не удалять */

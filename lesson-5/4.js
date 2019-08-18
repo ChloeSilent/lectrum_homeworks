@@ -10,17 +10,30 @@
  * - Функция принимает один параметр;
  * - Функция содержит валидацию входного параметра на тип string.
  */
+// Решение
+// const extractCurrencyValue = function(source){
+//   if (typeof source === 'string' || source instanceof String) {
+//       return parseInt(source.substring(1));
+//   }
+// throw new TypeError('type is not a string');
+// }
+
 
 const PRICE = '$120';
+/**
+ *
+ * -  Выполнено верно.
+ * - Следуя хорошим практикам, сначала делают валидацию и выбрасывают ошибку если что-то пошло не так. И только затем выполняют необходимую бизнес логику.
+ * - решение
+ */
 
-// Решение
-const extractCurrencyValue = function(source){
-    if (typeof source === 'string' || source instanceof String) {
-        return parseInt(source.substring(1));
-    }
-  throw new TypeError('type is not a string');
+const extractCurrencyValue = function (source) {
+  if (typeof source != 'string') {
+    throw new TypeError('type is not a string');
+  }
+  return parseInt(source.substring(1));
 }
 
-extractCurrencyValue(PRICE); // 120
+console.log(extractCurrencyValue(PRICE)); // 120
 
-exports.extractCurrencyValue = extractCurrencyValue;
+//exports.extractCurrencyValue = extractCurrencyValue;

@@ -30,13 +30,13 @@ class Worker {
     }
 
     getName() {
-        
+
         return (`${this.#firstName} ${this.#lastName}`);
     }
 
     getRate() {
 
-        return this.#days;
+        return this.#rate;
     }
 
     getDays() {

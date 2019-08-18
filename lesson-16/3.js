@@ -12,6 +12,7 @@
 // Решение
 
 class Worker {
+
     #firstName;
     #lastName;
     #rate;
@@ -32,7 +33,7 @@ class Worker {
 
     getRate() {
 
-        return this.#days;
+        return this.#rate;
     }
 
 

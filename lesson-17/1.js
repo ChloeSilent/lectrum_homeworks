@@ -18,11 +18,20 @@
 // Решение
 
 function postpone(start, end, delay) {
-    if (arguments.length > 3) {
+    if (arguments.length > 3 || arguments.length < 3) {
         throw Error('Функция принимает только три параметра');
     }
-    if (typeof start !== 'number' && typeof end !== 'number' && typeof delay !== 'number') {
-        throw Error('Входные параметры функции должны иметь тип number');
+
+    if (typeof start !== 'number') {
+        throw Error(`1й входной параметр функции start должен иметь тип number`);
+    }
+
+    if (typeof end !== 'number') {
+        throw Error(`2й входной параметр функции end должен иметь тип number`);
+    }
+
+    if (typeof delay !== 'number') {
+        throw Error(`3й входной параметр функции delay должен иметь тип number`);
     }
 
     let count;
@@ -55,7 +64,6 @@ function postpone(start, end, delay) {
             count--;
         }, delay);
     }
-
 }
 
 
@@ -64,7 +72,7 @@ postpone(1, 3, 1000);
 // 2
 // 3
 
-postpone(3, 1, 1000);
+// postpone(3, 1, 1000);
 // 3
 // 2
 // 1

@@ -17,13 +17,57 @@
 
 // Решение
 
+function postpone(start, end, delay) {
+    if (arguments.length > 3) {
+        throw Error('Функция принимает только три параметра');
+    }
+    if (typeof start !== 'number' && typeof end !== 'number' && typeof delay !== 'number') {
+        throw Error('Входные параметры функции должны иметь тип number');
+    }
+
+    let count;
+
+    if (start <= end) {
+        count = 1;
+
+        let timerId = setTimeout(function tick() {
+            if (count <= end) {
+                console.log(count);
+                timerId = setTimeout(tick, delay);
+            } else {
+                clearTimeout(timerId);
+            }
+
+            count++;
+        }, delay);
+
+    } else {
+        count = start;
+
+        let timerId = setTimeout(function tick() {
+            if (count >= end) {
+                console.log(count);
+                timerId = setTimeout(tick, delay);
+            } else {
+                clearTimeout(timerId);
+            }
+
+            count--;
+        }, delay);
+    }
+
+}
+
+
 postpone(1, 3, 1000);
 // 1
 // 2
 // 3
+
 postpone(3, 1, 1000);
 // 3
 // 2
 // 1
+
 
 exports.postpone = postpone;

@@ -47,3 +47,6 @@ console.log(developer1.completedTasks.length); // 3
 console.log(developer2.completedTasks.length); // 3
 
 exports.Developer = Developer;
+/**
+Задача 2: Выполнена верно. Без замечаний. Так держать!
+ */

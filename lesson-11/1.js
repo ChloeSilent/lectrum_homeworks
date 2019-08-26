@@ -52,14 +52,16 @@ const createNumberGenerator = function () {
 
     const createNumber = function () {
         const randNum = generateRand();
-
+        console.log(randNum);
         if (generatedNumbersArray.includes(randNum)) {
+            console.log(`same randNum is ${randNum}`);
             throw new Error("Функция была вызвана, когда доступные для выведения числа закончились");
         }
-
-        return generatedNumbersArray.unshift(randNum);
+        console.log(`generatedNumbersArray is ${generatedNumbersArray}`);
+        generatedNumbersArray.unshift(randNum);
+        return randNum;
     }
-
+    
     return createNumber;
 }
 

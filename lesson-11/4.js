@@ -73,7 +73,7 @@ const createLogger = function () {
             let called = {
                 name: firstFun.name,
                 in: rest ? rest : [],
-                out: res ? res : undefined
+                out: res // до было: out: res ? res : undefined
             };
 
             calledArr.push(called);

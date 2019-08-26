@@ -55,7 +55,7 @@
 
 const createFibonacciGenerator = function () {
     let n = 2;
-    let result;
+    let result = null;
 
     let fibonacciObject = {
         print: function () {

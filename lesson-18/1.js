@@ -100,7 +100,7 @@ class DB {
         if (arguments.length > 0) {
             throw Error("This method has no arguments");
         }
-        console.log(Array.from(this.map));
+        // console.log(Array.from(this.map));
         return Array.from(this.map);
     }
 
@@ -118,16 +118,15 @@ class DB {
         }
 
         const old = this.map.get(id);
-        console.log("old is " + old );
+        console.log("old is " + this.map.get(id) );
         this.map.set(id, {...old, ...upData});
-        console.log("renew map is " + Array.from(this.map) );
+        // console.log("renew map is " + Array.from(this.map) );
     }
 
     delete(id) {
         if (!this.map.has(id)) {
             throw Error("This id doesnt exist");
         }
-        console.log('delete ' + id);
         this.map.delete(id);
 
     }
@@ -150,3 +149,7 @@ db.update(id, {
     age: 22
 }); // id
 db.delete(id); // true
+
+// Задание 1 выполнено верно. Есть пару замечаний.
+// console.log нужно удалять. По заданию их нет
+// Не корректно сформирован возвращаемый массив. Он не до конца обработан. Но лучше было бы вернуть таким образом → return [...this.db.values()];

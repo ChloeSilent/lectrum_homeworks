@@ -22,24 +22,20 @@ class Customers {
 
     add(obj) {
         if (!obj.name) {
-            throw Error("Object shoul have a name");
+            throw Error("Object should have a name");
         }
-        this.names.push(obj)
+        this.names.push(obj);
     }
 
     [Symbol.iterator]() {
         let i = 0;
+        const verifiedArr = this.names.filter(item => item.verified == true);
 
         return {
-
             next: () => {
-                const done = i >= this.names.length;
-                const value = !done ? this.names[i++] : undefined;
-                if (!done) {
-                    if (value.verified) {
-                        console.log(value);
-                    }
-                }
+                const done = i >= verifiedArr.length;
+                const value = !done ? verifiedArr[i++] : undefined;
+                
                 return {
                     done,
                     value,
@@ -87,8 +83,8 @@ customers.add({
 });
 let k = []
 for (const customer of customers) {
-    // console.log(customer);
-    k.push(customer);
+    console.log(customer);
+
 }
 
 // В консоли будет

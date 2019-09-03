@@ -55,7 +55,7 @@
 const calculate = function (...funcs) {
 
     funcs.forEach((f) => {
-        if (f && {}.toString.call(f) !== '[object Function]') {
+        if (typeof f !== 'function') {
             throw new Error("Один из аргументов функции calculate() не является функцией");
         };
 

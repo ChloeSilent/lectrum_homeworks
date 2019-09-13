@@ -9,27 +9,55 @@ class Transaction {
 
     async dispatch(scrnario) {
 
-            try {
-                await scrnario.call();
-                // this.map.set( /*данные, необходимые для выполнения следующего шага сценария */ );
-                // this.logs.push( /*Index, meta, stepResult/nextStep, error */ )
-            } catch (error) {
-                console.log(error.message);
-                rollback(scrnario)
+        try {
+            await scrnario.call();
+        } catch (error) {
+            console.log(error.message);
+            rollback(scrnario)
 
-            }
+        }
 
     }
 
     async rollback(scrnario) {
         try {
             await scrnario.restore();
-            // this.map.set( /*данные, необходимые для выполнения следующего шага сценария */ );
-            // this.logs.push( /*Index, meta, nextStep, error */ )
         } catch (error) {
             console.log(error.message);
-            // this.logs.push( /*Index, meta, nextStep, error */ )
+
         }
+    }
+
+}
+
+class Log {
+    getResult(result) {
+        return result;
+    }
+
+    getError(error) {
+        if (!error) {
+
+            return null;
+        } else {
+
+            return {
+                name: error.name,
+                message: error.message,
+                stack: error.stack
+            };
+        }
+    }
+
+    constructor(index, title, description, result, error) {
+        this.index = index;
+        this.name = name;
+        this.meta = {
+            title: title,
+            description: description
+        }
+        this.error = getError(error);
+        this.result = this.getResult(result)
     }
 
 }
@@ -41,10 +69,12 @@ const scenario = [{
             description: 'Collects pieces of data that required for restore scenario',
         },
         async call(store, logs) {
-            // Логика выполнения шага
+            let log = Log(index, title, description, result, error)
+            logs.push(log)
+            store.set(/* Сюда положить пару ключ/значение */);
         },
         async restore(store, logs) {
-            // Логика отката шага
+            // this.logs.push( /*Index, meta, nextStep, error */ )
         },
     },
     {

@@ -8,13 +8,14 @@ class Transaction {
 
 
     async dispatch(scrnario) {
+        for (let element of scenario) {
+            try {
+                await element.call();
+            } catch (error) {
+                console.log(error.message);
+                rollback(element)
 
-        try {
-            await scrnario.call();
-        } catch (error) {
-            console.log(error.message);
-            rollback(scrnario)
-
+            }
         }
 
     }
@@ -29,8 +30,17 @@ class Transaction {
     }
 
 }
-
+/*создает ошибку для лога */
+class Err {
+    constructor(error) {
+        this.name = error.name,
+            this.message = error.message,
+            this.stack = error.stack
+    }
+}
+/*создает лог для массива логов */
 class Log {
+
     getResult(result) {
         return result;
     }
@@ -40,18 +50,16 @@ class Log {
 
             return null;
         } else {
-
-            return {
-                name: error.name,
-                message: error.message,
-                stack: error.stack
-            };
-        }
+            new Err(error)
+        };
     }
 
+
     constructor(index, title, description, result, error) {
+
         this.index = index;
         this.name = name;
+
         this.meta = {
             title: title,
             description: description
@@ -62,6 +70,7 @@ class Log {
 
 }
 
+
 const scenario = [{
         index: 1,
         meta: {
@@ -69,9 +78,9 @@ const scenario = [{
             description: 'Collects pieces of data that required for restore scenario',
         },
         async call(store, logs) {
-            let log = Log(index, title, description, result, error)
+            let log = new Log(this.index, this.title, this.description, result, error)
             logs.push(log)
-            store.set(/* Сюда положить пару ключ/значение */);
+            store.set( /* Сюда положить пару ключ/значение */ );
         },
         async restore(store, logs) {
             // this.logs.push( /*Index, meta, nextStep, error */ )

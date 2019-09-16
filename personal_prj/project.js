@@ -74,13 +74,13 @@ class Log {
 const scenario = [{
         index: 1,
         meta: {
-            title: 'Collect backup information.',
-            description: 'Collects pieces of data that required for restore scenario',
+            title: '',
+            description: 'Получить данные о состоянии текущего рублевого счета',
         },
         async call(store, logs) {
             let log = new Log(this.index, this.title, this.description, result, error)
             logs.push(log)
-            store.set( /* Сюда положить пару ключ/значение */ );
+            store.set(amount, 1000);
         },
         async restore(store, logs) {
             // this.logs.push( /*Index, meta, nextStep, error */ )
@@ -89,8 +89,35 @@ const scenario = [{
     {
         index: 2,
         meta: {
-            title: 'Withdraw funds from source account.',
-            description: 'Takes off funds from source account and freezes it until entire scenario ends successfully or unsuccessfully.',
+            title: '',
+            description: 'Взять из рублевого счета 30 % от общей суммы',
+        },
+        async call(store, logs) {
+            store.get(amount)
+            // Логика выполнения шага
+        },
+        async restore(store, logs) {
+            // Логика отката шага
+        },
+    },
+    {
+        index: 3,
+        meta: {
+            title: '',
+            description: 'Сконвертировать снятые средства в евро по курсу 1/75',
+        },
+        async call(store, logs) {
+            // Логика выполнения шага
+        },
+        async restore(store, logs) {
+            // Логика отката шага
+        },
+    },
+    {
+        index: 4,
+        meta: {
+            title: '',
+            description: 'Перевести эти деньги на другой евровый счет',
         },
         async call(store, logs) {
             // Логика выполнения шага

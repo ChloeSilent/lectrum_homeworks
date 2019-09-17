@@ -7,10 +7,10 @@ class Transaction {
     }
 
 
-    async dispatch(scrnario) {
+    async dispatch(scenario) {
         for (let element of scenario) {
             try {
-                await element.call();
+                await element.call(this.store, this.logs);
             } catch (error) {
                 console.log(error.message);
                 rollback(element)
@@ -20,9 +20,9 @@ class Transaction {
 
     }
 
-    async rollback(scrnario) {
+    async rollback(scenario) {
         try {
-            await scrnario.restore();
+            await scenario.restore();
         } catch (error) {
             console.log(error.message);
 
@@ -46,8 +46,7 @@ class Log {
     }
 
     getError(error) {
-        if (!error) {
-
+        if (null) {
             return null;
         } else {
             new Err(error)
@@ -78,12 +77,14 @@ const scenario = [{
             description: 'Получить данные о состоянии текущего рублевого счета',
         },
         async call(store, logs) {
-            let log = new Log(this.index, this.title, this.description, result, error)
-            logs.push(log)
-            store.set(amount, 1000);
+            store.set(this.index, { amount: 1000 });
+            let log = new Log(this.index, this.title, this.description, store.get(this.index), null);
+            logs.push(log);
         },
         async restore(store, logs) {
-            // this.logs.push( /*Index, meta, nextStep, error */ )
+            let error = new Err({name: "Error name", message: "Error message",stack: "Error stack"});
+            let log = new Log(this.index, this.title, this.description, null, error);
+            logs.push(log);
         },
     },
     {
@@ -93,11 +94,15 @@ const scenario = [{
             description: 'Взять из рублевого счета 30 % от общей суммы',
         },
         async call(store, logs) {
-            store.get(amount)
-            // Логика выполнения шага
+            let account = store.get(this.index-1);
+            store.set(this.index, {value: account.get('amount')*0.3});
+            let log = new Log(this.index, this.title, this.description, store.get(this.index), null);
+            logs.push(log);
         },
         async restore(store, logs) {
-            // Логика отката шага
+            let error = new Err({name: "Error name", message: "Error message",stack: "Error stack"});
+            let log = new Log(this.index, this.title, this.description, null, error);
+            logs.push(log);
         },
     },
     {
@@ -107,25 +112,30 @@ const scenario = [{
             description: 'Сконвертировать снятые средства в евро по курсу 1/75',
         },
         async call(store, logs) {
-            // Логика выполнения шага
+            let currentAmount = store.get(this.index-1)
+            store.set(this.index, {euro: currentAmount/75})
+            let log = new Log(this.index, this.title, this.description, store.get(this.index), null);
+            logs.push(log);
         },
         async restore(store, logs) {
-            // Логика отката шага
+            let error = new Err({name: "Error name", message: "Error message",stack: "Error stack"})
+            let log = new Log(this.index, this.title, this.description, null, error);
+            logs.push(log);
         },
     },
-    {
-        index: 4,
-        meta: {
-            title: '',
-            description: 'Перевести эти деньги на другой евровый счет',
-        },
-        async call(store, logs) {
-            // Логика выполнения шага
-        },
-        async restore(store, logs) {
-            // Логика отката шага
-        },
-    },
+    // {
+    //     index: 4,
+    //     meta: {
+    //         title: '',
+    //         description: 'Перевести эти деньги на другой евровый счет',
+    //     },
+    //     async call(store, logs) {
+    //         store.set
+    //     },
+    //     async restore(store, logs) {
+    //         // Логика отката шага
+    //     },
+    // },
 ];
 
 
